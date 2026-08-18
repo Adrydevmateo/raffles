@@ -1,0 +1,20 @@
+@font-face {
+	font-family: "GoogleSansFlex";
+	src: url("/fonts/GoogleSansFlex.woff2") format("woff2");
+}
+
+:root {
+	--color-border: #c6c6cd;
+	--color-border-variant: #e5e7eb;
+
+	--global-padding-inline: 1rem;
+}
+
+body {
+	font-family: "GoogleSansFlex";
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}

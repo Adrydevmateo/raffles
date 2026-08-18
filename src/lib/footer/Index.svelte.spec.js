@@ -5,19 +5,27 @@ import { render } from "vitest-browser-svelte";
 const mock = {
 	platformName: "Test Title",
 	platformDescription: "Test description",
+	terms: "Test terms of Service",
+	privacy: "Test privacy Policy",
 };
 
 test("Footer displays the most important elements", async () => {
 	const footer = await render(Footer, {
 		platformName: mock.platformName,
 		platformDescription: mock.platformDescription,
+		terms: mock.terms,
+		privacy: mock.privacy,
 	});
 	const title = footer.getByText(mock.platformName, { exact: true });
 	const description = footer.getByText(mock.platformDescription, {
 		exact: true,
 	});
+	const terms = footer.getByText(mock.terms, { exact: true });
+	const privacy = footer.getByText(mock.privacy, { exact: true });
 	await Promise.all([
 		expect.element(title).toBeInTheDocument(),
 		expect.element(description).toBeInTheDocument(),
+		expect.element(terms).toBeInTheDocument(),
+		expect.element(privacy).toBeInTheDocument(),
 	]);
 });
