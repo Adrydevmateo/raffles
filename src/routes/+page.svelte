@@ -9,5 +9,9 @@
 <style>
 	.page-container {
 		padding-inline: var(--global-padding-inline);
+
+		h1 {
+			margin-top: 0;
+		}
 	}
 </style>

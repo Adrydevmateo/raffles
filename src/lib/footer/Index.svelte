@@ -1,4 +1,6 @@
 <script>
+	import MailIcon from '$lib/assets/icons/MailOutline.svg?raw'
+	import PlanetIcon from '$lib/assets/icons/Planet.svg?raw'
 	const {
 		platformName = "LuxeRaffle",
 		platformDescription = "Premium Prize Competitions",
@@ -8,16 +10,12 @@
 
 	const contacts = [
 		{
-			to: "",
-			icon: "planet",
+			to: "/",
+			icon: PlanetIcon,
 		},
 		{
-			to: "",
-			icon: "instagram",
-		},
-		{
-			to: "",
-			icon: "email",
+			to: "/",
+			icon: MailIcon,
 		},
 	];
 </script>
@@ -37,7 +35,7 @@
 		<p>&copy; 2026 {platformName}. All rights reserved.</p>
 		<nav>
 			{#each contacts as contact}
-				<a href={contact.to}>{contact.icon}</a>
+				<a href={contact.to}>{@html contact.icon}</a>
 			{/each}
 		</nav>
 	</section>

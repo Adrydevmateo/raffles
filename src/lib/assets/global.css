@@ -18,3 +18,11 @@ body {
 a {
 	text-decoration: none;
 }
+
+#layout {
+	background-color: red;
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: 1fr auto;
+
+}
