@@ -24,5 +24,10 @@ a {
 	min-height: 100dvh;
 	display: grid;
 	grid-template-rows: 1fr auto;
+}
 
+@media (min-width: 700px) {
+	:root {
+		--global-padding-inline: 1.9rem;
+	}
 }

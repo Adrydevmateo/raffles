@@ -1,6 +1,6 @@
 <script>
-	import MailIcon from '$lib/assets/icons/MailOutline.svg?raw'
-	import PlanetIcon from '$lib/assets/icons/Planet.svg?raw'
+	import PlanetIcon from '../assets/icons/Planet.svg?raw'
+	import MailIcon from '../assets/icons/Mail.svg?raw'
 	const {
 		platformName = "LuxeRaffle",
 		platformDescription = "Premium Prize Competitions",
