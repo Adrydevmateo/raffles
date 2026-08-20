@@ -1,4 +1,8 @@
-<section id="hero">
+<script>
+
+</script>
+
+<section id="hero" style={`background-image: url('/images/naomi.jpg');`}>
 	<div id="content">
 		<p id="eyebrow">LIMITED EDITION</p>
 		<h1>Premium Smart Kitchen Suite</h1>
@@ -18,12 +22,18 @@
 
 <style>
 	#hero {
-		background-color: green;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 		padding-inline: var(--global-padding-inline);
-		padding-top: 3rem;
-		padding-bottom: 1.9rem;
+		min-height: 60dvh;
 		display: grid;
-		gap: 3rem;
+		grid-template-rows: 1fr auto;
+
+		#content {
+			display: grid;
+			place-content: center start;
+		}
 
 		h1,
 		#eyebrow {
@@ -38,7 +48,6 @@
 		}
 
 		#cta-box {
-			background-color: yellow;
 			display: flex;
 			align-items: center;
 			gap: 1rem;
@@ -50,23 +59,9 @@
 		}
 
 		#indicators-box {
-			background-color: yellow;
+			height: 3rem;
 			display: grid;
-			margin-inline: auto;
-		}
-	}
-
-
-	@media (min-width: 700px) {
-		#hero {
-			padding-bottom: 3rem;
-			gap: 3.9rem;
-
-			#cta-box {
-				a {
-					padding-inline: 3rem;
-				}
-			}
+			place-content: start center;
 		}
 	}
 </style>
