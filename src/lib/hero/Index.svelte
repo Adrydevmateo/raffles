@@ -39,6 +39,9 @@
 		},
 	];
 
+	/**
+	 * @param {number} contentIndex
+	 */
 	function changeCurrentCarouselContent(contentIndex, { increase = false }) {
 		if (increase) {
 			activateAutoMode();
