@@ -1,14 +1,52 @@
 <script>
+	let carouselCounter = $state(0);
+	let carouselAutoMode = $state(false);
+	const carouselContent = [
+		{
+			to: "/",
+			img: "/images/naomi.jpg",
+			title: "Premium Smart Kitchen Suite",
+			description:
+				"Elevate your culinary experience with our curated collection of professional-grade smart appliances and designer kitchen essentials.",
+			eyebrowText: "LIMITED EDITION",
+		},
+		{
+			to: "/",
+			img: "/images/lotus.jpg",
+			title: "Artisan Chef Collection",
+			description:
+				"Handcrafted precision meets culinary excellence with our bespoke range of professional-grade cookware and artisan kitchen tools.",
+			eyebrowText: "HANDFORGED SERIES",
+		},
+		{
+			to: "/",
+			img: "/images/uddle.jpg",
+			title: "Minimalist Smart Hub",
+			description:
+				"Seamlessly integrated AI-powered appliances with invisible technology and refined Scandinavian design for the modern home.",
+			eyebrowText: "INVISIBLE TECH",
+		},
+	];
 
+	setInterval(() => {
+		if (!carouselAutoMode) return;
+		const plusOne = carouselCounter + 1;
+		if (plusOne === carouselContent.length) carouselCounter = 0;
+		else carouselCounter += 1;
+	}, 3000);
 </script>
 
-<section id="hero" style={`background-image: url('/images/naomi.jpg');`}>
+<section
+	id="hero"
+	style={`background-image: url('${carouselContent[carouselCounter].img}');`}
+>
 	<div id="content">
-		<p id="eyebrow">LIMITED EDITION</p>
-		<h1>Premium Smart Kitchen Suite</h1>
+		<p id="eyebrow">
+			{carouselContent[carouselCounter].eyebrowText}
+		</p>
+		<h1>{carouselContent[carouselCounter].title}</h1>
 		<p id="description">
-			Elevate your culinary experience with our curated collection of
-			professional-grade smart appliances and designer kitchen essentials.
+			{carouselContent[carouselCounter].description}
 		</p>
 		<div id="cta-box">
 			<a href="/">ENTER NOW</a>
@@ -16,7 +54,9 @@
 		</div>
 	</div>
 	<div id="indicators-box">
-		<span>&#9866;</span>
+		{#each carouselContent as _item}
+			<button type="button">&#9866;</button>
+		{/each}
 	</div>
 </section>
 
@@ -43,7 +83,7 @@
 		#eyebrow {
 			outline: 1px solid red;
 			width: fit-content;
-			padding: .3rem .6rem;
+			padding: 0.3rem 0.6rem;
 			border-radius: 1rem;
 		}
 
@@ -60,8 +100,10 @@
 
 		#indicators-box {
 			height: 3rem;
-			display: grid;
-			place-content: start center;
+			display: flex;
+			align-items: start;
+			justify-content: center;
+			gap: 1rem;
 		}
 	}
 </style>
