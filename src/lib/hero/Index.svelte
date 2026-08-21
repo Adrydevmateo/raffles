@@ -1,6 +1,17 @@
 <script>
+	import { onDestroy, onMount } from "svelte";
+
+	/**
+	 * @type {null | number | NodeJS.Timeout}
+	 */
+	let timeoutID = null;
+
+	/**
+	 * @type {null | number | NodeJS.Timeout}
+	 */
+	let intervalID = null;
+
 	let carouselCounter = $state(0);
-	let carouselAutoMode = $state(true);
 	const carouselContent = [
 		{
 			to: "/",
@@ -28,12 +39,45 @@
 		},
 	];
 
-	setInterval(() => {
-		if (!carouselAutoMode) return;
-		const plusOne = carouselCounter + 1;
-		if (plusOne === carouselContent.length) carouselCounter = 0;
-		else carouselCounter += 1;
-	}, 3000);
+	function changeCurrentCarouselContent(contentIndex, { increase = false }) {
+		if (increase) {
+			activateAutoMode();
+		} else {
+			carouselCounter = contentIndex;
+			activateAutoModeWithDelay();
+		}
+	}
+
+	function activateAutoMode() {
+		clearSideEffects();
+		intervalID = setInterval(() => {
+			const plusOne = carouselCounter + 1;
+			if (plusOne === carouselContent.length) carouselCounter = 0;
+			else carouselCounter += 1;
+		}, 3000);
+	}
+
+	function activateAutoModeWithDelay() {
+		clearSideEffects();
+		timeoutID = setTimeout(() => {
+			activateAutoMode();
+			timeoutID = null;
+		}, 3000);
+	}
+
+	function clearSideEffects() {
+		if (timeoutID) clearTimeout(timeoutID);
+		if (intervalID) clearInterval(intervalID);
+	}
+
+	onMount(() => {
+		changeCurrentCarouselContent(0, { increase: true });
+	});
+
+	onDestroy(() => {
+		if (timeoutID) clearTimeout(timeoutID);
+		if (intervalID) clearInterval(intervalID);
+	});
 </script>
 
 <section
@@ -57,6 +101,8 @@
 		{#each carouselContent as _item, index}
 			<button
 				type="button"
+				onclick={() =>
+					changeCurrentCarouselContent(index, { increase: false })}
 				class={`${carouselCounter == index && "active"}`}
 				>&#9866;</button
 			>
