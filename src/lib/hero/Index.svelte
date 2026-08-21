@@ -1,6 +1,6 @@
 <script>
 	let carouselCounter = $state(0);
-	let carouselAutoMode = $state(false);
+	let carouselAutoMode = $state(true);
 	const carouselContent = [
 		{
 			to: "/",
@@ -54,8 +54,12 @@
 		</div>
 	</div>
 	<div id="indicators-box">
-		{#each carouselContent as _item}
-			<button type="button">&#9866;</button>
+		{#each carouselContent as _item, index}
+			<button
+				type="button"
+				class={`${carouselCounter == index && "active"}`}
+				>&#9866;</button
+			>
 		{/each}
 	</div>
 </section>
@@ -104,6 +108,20 @@
 			align-items: start;
 			justify-content: center;
 			gap: 1rem;
+
+			& .active {
+				background-color: red;
+			}
+
+			button {
+				scale: 1.6;
+				line-height: 0;
+				height: 0.2rem;
+				width: 1.3rem;
+				margin-inline: 0.3rem;
+				color: transparent;
+				border: none;
+			}
 		}
 	}
 </style>
