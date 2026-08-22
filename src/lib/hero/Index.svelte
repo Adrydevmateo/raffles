@@ -78,10 +78,15 @@
 	});
 
 	onDestroy(() => {
-		if (timeoutID) clearTimeout(timeoutID);
-		if (intervalID) clearInterval(intervalID);
+		clearSideEffects();
 	});
 </script>
+
+<svelte:head>
+	{#each carouselContent as item}
+		<link rel="preload" as="image" href={item.img} />
+	{/each}
+</svelte:head>
 
 <section
 	id="hero"
